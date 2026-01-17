@@ -6,7 +6,7 @@
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:56:15 by yhamdaou          #+#    #+#             */
-/*   Updated: 2026/01/14 11:44:57 by yhamdaou         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:34:42 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
+	int				index;
 }	t_list;
 
 char	**ft_split(char const *s, char c);
@@ -30,6 +31,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int content);
 void	ft_lstclear(t_list **lst);
 int		ft_exist(t_list *list, int content);
+int		ft_lstsize(t_list *lst);
 // t_list	*ft_lstlast(t_list *lst);
 void	sa(t_list *stack_a, int flag);
 void	sb(t_list *stack_b, int flag);

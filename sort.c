@@ -1,50 +1,76 @@
 #include <stdio.h>
 #include "ft_utils.h"
 
+void	sort_three_nodes(t_list **stack_a, t_list **stack_b)
+{
+	int n1 = (*stack_a)->index;
+	int n2 = (*stack_a)->next->index;
+	int n3 = (*stack_a)->next->next->index;
+
+	if((n1 < n2) && (n1 > n3) && (n2 > n3))
+		rra(stack_a, 1);
+	else if((n1 > n2) && (n1 > n3) && (n2 < n3))
+		ra(stack_a, 1);
+	else if((n1 < n2) && (n1 < n3) && (n2 > n3))
+	{
+		rra(stack_a, 1);
+		sa((*stack_a), 1);
+	}
+	else if((n1 > n2) && (n1 < n3) && (n2 < n3))
+		sa((*stack_a), 1);
+	else if((n1 > n2) && (n1 > n3) && (n2 > n3))
+	{
+		sa((*stack_a), 1);
+		rra(stack_a, 1);
+	}
+}
+
+void	sort_four_nodes(t_list **stack_a, t_list **stack_b)
+{
+	int min = (*stack_a)->index;
+	t_list *min_node = (*stack_a);
+	t_list *tmp = (*stack_a)->next;
+
+	while (tmp)
+	{
+		if (min > tmp->index)
+		{
+			min = tmp->index;
+			min_node = tmp;
+		}
+		tmp = tmp->next;
+	}
+	//i have to delete min node from stack a
+	ft_lstadd_back(stack_b, min_node);
+
+}
+
 int main()
 {
 	t_list *stack_a = NULL;
 	t_list *stack_b = NULL;
 	t_list *tmp;
 
+	ft_lstadd_back(&stack_a, ft_lstnew(3));
 	ft_lstadd_back(&stack_a, ft_lstnew(5));
 	ft_lstadd_back(&stack_a, ft_lstnew(4));
-	ft_lstadd_back(&stack_a, ft_lstnew(3));
-	// ft_lstadd_back(&stack_a, ft_lstnew(6));
+	// ft_lstadd_back(&stack_a, ft_lstnew(0));
+	// ft_lstadd_back(&stack_a, ft_lstnew(3));
+
 	tmp = stack_a;
 	printf("stack_a before\n");
 	while(tmp)
 	{
+		// printf(" content: %d\n index: %d\n", tmp->content, tmp->index);
 		printf("%d\n", tmp->content);
 		tmp = tmp->next;
 	}
 
-	t_list *second_node = stack_a->next;
+	if(ft_lstsize(stack_a) == 3)
+		sort_three_nodes(&stack_a, &stack_b);
 
-	if((stack_a->content < second_node->content) && (stack_a->content > second_node->next->content) 
-		&& (second_node->content > second_node->next->content))
-		rra(&stack_a, 1);
-	else if((stack_a->content > second_node->content) && (stack_a->content > second_node->next->content) 
-		&& (second_node->content < second_node->next->content))
-		ra(&stack_a, 1);
-	else if((stack_a->content < second_node->content) && (stack_a->content < second_node->next->content) 
-		&& (second_node->content > second_node->next->content))
-	{
-		pb(&stack_a, &stack_b);
-		ra(&stack_a, 1);
-		pa(&stack_a, &stack_b);
-	}
-	else if((stack_a->content > second_node->content) && (stack_a->content < second_node->next->content) 
-		&& (second_node->content < second_node->next->content))
-		sa(stack_a, 1);
-	else if((stack_a->content > second_node->content) && (stack_a->content > second_node->next->content) 
-		&& (second_node->content > second_node->next->content))
-	{
-		sa(stack_a, 1);
-		rra(&stack_a, 1);
-				
-	}
 
+		 
 	tmp = stack_a;
 	printf("stack_a after\n");
 		while(tmp)
