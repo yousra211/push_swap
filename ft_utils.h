@@ -6,7 +6,7 @@
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:56:15 by yhamdaou          #+#    #+#             */
-/*   Updated: 2026/01/16 21:34:42 by yhamdaou         ###   ########.fr       */
+/*   Updated: 2026/01/18 20:44:34 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	rr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a, int flag);
 void	rrb(t_list **stack_b, int flag);
 void	rrr(t_list **stack_a, t_list **stack_b);
+void	sort_three_nodes(t_list **stack_a);
 
 #endif
